@@ -1,7 +1,6 @@
 /* == Useful things commented out == */
 
-@media (max-width: 575px) { 
-
+@media (max-width: 575px) {
 }
 
 @media (min-width: 576px) { 
@@ -194,6 +193,7 @@
     /* Content Pages */
 
         /* Classes */
+
             .page {
                 display: none;
                 margin: 1px;
@@ -246,7 +246,8 @@
             }
 
             #content-area{
-                overflow: visible;
+                overflow-y: visible;
+                overflow-x: hidden;
                 width: 100%;
                 padding-top: max(15px, env(safe-area-inset-top));
                 /*margin-top: 10px;*/
@@ -406,7 +407,8 @@
                     }
                 }
 
-    /* Menu Items */
+
+/* Menu Items */
 
         /* Classes */
 
@@ -678,7 +680,7 @@
                     #left-menu{
                         position: fixed;
                         height: 100%;
-                        z-index: 0;
+                        z-index: 1;
                         width: 200px;
                         left: 0 !important;
                     }
@@ -688,7 +690,7 @@
                     #left-menu{
                         position:fixed;
                         height: 100%;
-                        z-index: 0;
+                        z-index: 1;
                         width: 200px;
                         left: 0 !important;
                     }
@@ -698,7 +700,7 @@
                     #left-menu{
                         position: fixed;
                         height: 100%;
-                        z-index: 0;
+                        z-index: 1;
                         width: 220px;
                         left: 0 !important;
                     }
@@ -708,7 +710,7 @@
                     #left-menu{
                         position: fixed;
                         height: 100%;
-                        z-index: 0;
+                        z-index: 1;
                         width: 220px;
                         left: 0 !important;
                     }
@@ -799,7 +801,7 @@
                 @media (min-width: 576px) { 
                     .task-name {
                         font-size: 12pt;
-                        width: 90%;
+                        width: 89%;
                     }
 
                     .task-name-bottom {
@@ -1742,6 +1744,38 @@
 
         /* Classes */
 
+                @media (max-width: 575px) { 
+                    .project-action {
+                        transform: translateY(-2px) !important;
+                    }
+                }
+
+                @media (min-width: 576px) { 
+                    .project-action {
+                        transform: translateY(0px);
+                    }
+                }
+
+                @media (min-width: 768px) { 
+                    .project-action {
+                        transform: translateY(0px);
+                    }
+                }
+
+                @media (min-width: 992px) { 
+                    .project-action {
+                        transform: translateY(0px);
+                    }
+                }
+
+                @media (min-width: 1200px) { 
+                    .project-action {
+                        transform: translateY(0px);
+                    }
+                }
+
+
+
             .perspective-title {
                 color: var(--decorative-light-alt);
                 padding: 0;
@@ -1750,7 +1784,7 @@
 
                 @media (max-width: 575px) { 
                     .perspective-title {
-                        width: 90%;
+                        width: 92%;
                         transform: translate(6px, -1px);
                         font-size: 15px;
                     }
@@ -1764,7 +1798,7 @@
 
                 @media (min-width: 576px) { 
                     .perspective-title {
-                        width: 94%;
+                        width: 97%;
                         transform: translate(0px, 0px);
                         font-size: 12px;
                     }
@@ -1784,7 +1818,7 @@
                     }
 
                     .perspective-title-subproject {
-                        width: 96%;
+                        width: 95%;
                         transform: translate(0px, 0px);
                         font-size: 12px;
                     }
@@ -1845,14 +1879,14 @@
 
                 @media (max-width: 575px) { 
                     .perspective-titleword {
-                        width: 48%;
+                        width: 44%;
                         font-size: 15px;
                     }
                 }
 
                 @media (min-width: 576px) { 
                     .perspective-titleword {
-                        width: 70%;
+                        width: 58%;
                         font-size: 12px;
                     }
                 }
@@ -2057,11 +2091,12 @@
                 }
             
             .project-action {
-                font-size: 10px;
+                font-size: 14px;
                 vertical-align: middle;
+                text-align: left;
+                width: 20px;
+                height: 20px;
                 text-align: center;
-                width: 17px;
-                height: 17px;
                 border-radius: 3px;
                 color: var(--task-icon);
                 cursor: pointer;
@@ -2415,13 +2450,13 @@
 
                 @media (max-width: 575px) { 
                     #perspective-back {
-                        transform: translate(82vw, 0px);
+                        transform: translate(83vw, -4px) !important;
                     }
                 }
 
                 @media (min-width: 576px) { 
                     #perspective-back {
-                        transform: translate(420px, -8px);
+                        transform: translate(417px, -6px);
                     }
                 }
 
@@ -2551,7 +2586,23 @@
                         display: none;
                     }
                 }
+/* Completed specific elements */
+    /* add more */
+        @media (max-width: 575px) {
+            #completed-fm {
+                font-size: 15px !important;
+            }
+        }
 
+        #completed-fm {
+            font-size: 10px;
+        }
+    /* loading more*/
+        @media (max-width: 575px) {
+            #completed-load-more-text {
+                font-size: 15px !important;
+            }
+        }
                 @media (min-width: 576px) { 
                     .greeting-auth-subtitle {
                         font-size: 14px;
@@ -3373,6 +3424,12 @@
                 -moz-border-radius: 5px;
                 -webkit-border-radius: 5px;
                 border-radius: 5px;
+            }
+            @media (max-width: 575px) {
+                #logout {
+                    font-size: 18px !important;
+                    transform: translateY(6px);
+                }
             }
 
             #logout:hover {
