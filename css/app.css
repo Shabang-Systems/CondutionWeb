@@ -1193,7 +1193,7 @@
                 /* checked mark aspect */
                 .task-check:not(:checked) + label:after,
                 .task-check:checked + label:after {
-                    font-family: FontAwesome;
+                    font-family: "Font Awesome 5 Free";
                     font-weight: 900; /* Fix version 5.0.9 */
                     text-transform: text;           /* proposed */
                     content: '\f00c';
@@ -1209,7 +1209,7 @@
 
                 .task-check:not(:checked) + label.ds:after,
                 .task-check:checked + label.ds:after {
-                    font-family: FontAwesome;
+                    font-family: "Font Awesome 5 Free";
                     font-weight: 900; /* Fix version 5.0.9 */
                     text-transform: text;           /* proposed */
                     content: '\f00c';
@@ -1225,7 +1225,7 @@
 
                 .task-check:not(:checked) + label.od:after,
                 .task-check:checked + label.od:after {
-                    font-family: FontAwesome;
+                    font-family: "Font Awesome 5 Free";
                     font-weight: 900; /* Fix version 5.0.9 */
                     text-transform: text;           /* proposed */
                     content: '\f00c';
@@ -2706,9 +2706,9 @@
 
     /* IDs */
 
-        #convert-src {
+        .convert-src {
             display: inline-block;
-            color: var(--decorative-light);
+            color: var(--content-normal-alt);
             font-weight: 500;
             transition-property: all;
             transition-duration: 200ms;
@@ -2721,61 +2721,59 @@
             transform: translateX(-6px);
             border: 0.5px solid transparent;
         }
-
-
             
             @media (max-width: 575px) { 
-                #convert-src {
+                .convert-src {
                     font-size: 4vw;
                     margin-top: 1px;
                 }
 
-                #convert-src:hover {
+                .convert-src:hover {
                     border: 0.5px solid transparent;
                 }
             }
 
             @media (min-width: 576px) { 
-                #convert-src {
+                .convert-src {
                     font-size: 13px;
                     margin-top: 5px;
                 }
 
-                #convert-src:hover {
+                .convert-src:hover {
                     border: 0.5px solid transparent;
                 }
             }
 
             @media (min-width: 768px) { 
-                #convert-src {
+                .convert-src {
                     font-size: 13px;
                     margin-top: 10px;
                 }
 
-                #convert-src:hover {
-                    border: 0.5px solid var(--decorative-light);
+                .convert-src:hover {
+                    border: 0.5px solid var(--content-normal-alt);
                 }
             }
 
             @media (min-width: 992px) { 
-                #convert-src {
+                .convert-src {
                     font-size: 13px;
                     margin-top: 15px;
                 }
 
-                #convert-src:hover {
-                    border: 0.5px solid var(--decorative-light);
+                .convert-src:hover {
+                    border: 0.5px solid var(--content-normal-alt);
                 }
             }
 
             @media (min-width: 1200px) { 
-                #convert-src {
+                .convert-src {
                     font-size: 13px;
                     margin-top: 15px;
                 }
 
-                #convert-src:hover {
-                    border: 0.5px solid var(--decorative-light);
+                .convert-src:hover {
+                    border: 0.5px solid var(--content-normal-alt);
                 }
             }
 
