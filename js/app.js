@@ -82871,7 +82871,6 @@ module.exports = perspectiveHandler;
     /* TODO TODO AAAAAA AAAA READ ME AAAAA TODO TODO
      */
 
-
     const isMobile = async function () {
         return (await Device.getInfo()).platform !== "web";
     };
@@ -83039,30 +83038,18 @@ module.exports = perspectiveHandler;
 
     let langCode = await Device.getLanguageCode();
     let translations;
-    switch (langCode.value) {
-        case "en-US":
-        case "en-us":
-            translations = require(`../static/I18n/en-US.json`);
-            break;
-        case "zh-CN":
-        case "zh-cn":
-        case "zh-HK":
-        case "zh-hk":
-        case "zh-MO":
-        case "zh-mo":
-        case "zh-SG":
-        case "zh-sg":
-        case "zh-TW":
-        case "zh-tw":
-            translations = require(`../static/I18n/zh-CN.json`);
-            break;
-        default:
-            console.log(`Undefined langcode ${langCode.value}`);
-            translations = require(`../static/I18n/en-US.json`);
-            break;
+
+    if (langCode.value.includes("en")) {
+        translations = require(`../static/I18n/en-US.json`);
+    } else if (langCode.value.includes("zh")) {
+        translations = require(`../static/I18n/zh-CN.json`);
+    } else {
+        console.log(`Undefined langcode ${langCode.value}`);
+        translations = require(`../static/I18n/en-US.json`);
     }
     do_INT(translations);
 
+    //let ism = isMobile();
     let ism = isMobile();
     let isi = isiOS();
 
@@ -83119,7 +83106,6 @@ else {
     $("body").removeClass();
     $("body").addClass(currentTheme);
 }
-
 // TODO: make this a mobile only change
 /*let loading_greeting_msgs = ["Welcome.", "Bontehu!", "Breath.", "Coffee or Tea?", "Productivity!", "Look up!", "Ready? Go!", "Accomplish!"];*/
 //let loading_greeting = loading_greeting_msgs[Math.floor(Math.random() * loading_greeting_msgs.length)];
@@ -84504,13 +84490,13 @@ let ui = function() {
                         await E.db.dissociateTask(uid, taskId, projectID);
                     }
                     projectName = selection.value;
-                    E.db.modifyTask(uid, taskId, {project:projId});
+                    await E.db.modifyTask(uid, taskId, {project:projId});
                     projectID = projId;
                     project = projectSelected;
                     $('#task-project-' + taskId).val(project);
                     await E.db.associateTask(uid, taskId, projId);
                 } else {
-                    E.db.modifyTask(uid, taskId, {project:""});
+                    await E.db.modifyTask(uid, taskId, {project:""});
                     this.value = ""
                     if (project !== undefined) {
                         activeTaskInboxed = true;
@@ -85021,8 +85007,6 @@ let ui = function() {
 
         // upcoming view loader
         let upcoming = async function() {
-            $("#inbox").empty();
-            $("#due-soon").empty();
             $("#greeting-date").html((new Date().toLocaleDateString(langCode.value, { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' })));
             $("#greeting").html(greeting);
             $("#greeting-name").html(displayName);
@@ -85095,16 +85079,16 @@ let ui = function() {
 
         // completed view loader
         let completed = async function() {
-            $("#completed-today").empty();
-            $("#completed-yesterday").empty();
-            $("#completed-thisweek").empty();
-            $("#completed-thismonth").empty();
-            $("#completed-earlier").empty();
-            $("#comp-lb-td").hide();
-            $("#comp-lb-yd").hide();
-            $("#comp-lb-pw").hide();
-            $("#comp-lb-pm").hide();
-            $("#comp-lb-el").hide();
+            //$("#completed-today").empty();
+            //$("#completed-yesterday").empty();
+            //$("#completed-thisweek").empty();
+            //$("#completed-thismonth").empty();
+            //$("#completed-earlier").empty();
+/*            $("#comp-lb-td").hide();*/
+            //$("#comp-lb-yd").hide();
+            //$("#comp-lb-pw").hide();
+            //$("#comp-lb-pm").hide();
+            /*$("#comp-lb-el").hide();*/
             completedLoaders = [];
             // get completed tasks
             let [tasksToday, tasksYesterday, tasksWeek, tasksMonth, evenBefore] = await E.db.getCompletedTasks(uid);
@@ -85191,7 +85175,7 @@ let ui = function() {
 
         // perspective view loader
         let perspective = async function(pid) {
-            $("#perspective-content").empty();
+            //$("#perspective-content").empty();
             pageIndex.pageContentID = pid;
             // get name
             let perspectiveObject = possiblePerspectives[0][pid];
@@ -85212,7 +85196,7 @@ let ui = function() {
 
         // project view loader
         let project = async function(pid) {
-            $("#project-content").empty();
+            //$("#project-content").empty();
             // update pid
             pageIndex.pageContentID = pid;
             // get the datum
@@ -85274,20 +85258,20 @@ let ui = function() {
         });
 
         //// clear all contentboxes
-        //$("#inbox").empty();
-        //$("#due-soon").empty();
-        //$("#completed-today").empty();
-        //$("#completed-yesterday").empty();
-        //$("#completed-thisweek").empty();
-        //$("#completed-thismonth").empty();
-        //$("#completed-earlier").empty();
-        //$("#comp-lb-td").hide();
-        //$("#comp-lb-yd").hide();
-        //$("#comp-lb-pw").hide();
-        //$("#comp-lb-pm").hide();
-        //$("#comp-lb-el").hide();
-        //$("#project-content").empty();
-        //$("#perspective-content").empty();
+        $("#inbox").empty();
+        $("#due-soon").empty();
+        $("#completed-today").empty();
+        $("#completed-yesterday").empty();
+        $("#completed-thisweek").empty();
+        $("#completed-thismonth").empty();
+        $("#completed-earlier").empty();
+        $("#comp-lb-td").hide();
+        $("#comp-lb-yd").hide();
+        $("#comp-lb-pw").hide();
+        $("#comp-lb-pm").hide();
+        $("#comp-lb-el").hide();
+        $("#project-content").empty();
+        $("#perspective-content").empty();
 
         // refresh data
         await refresh();
@@ -86104,7 +86088,6 @@ window.addEventListener('devtoolschange', event => {
                 $(".auth-upf").val("");
             }
         });
-
     }
 })();
 
