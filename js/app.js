@@ -67786,6 +67786,10 @@ async function getProjectStructure(userID, projectID, recursive=false) {
     // cache will catch all projects and only hit the db once
 
     let project =  (await cRef("users", userID, "projects").get().then(snap => snap.docs)).filter(doc=>doc.id === projectID)[0];
+    if (!project) {
+        console.log(projectID);
+        return { id: projectID, children: [], is_sequential: false, sortOrder: 0, parentProj: 0};
+    }
     for (let [itemID, type] of Object.entries(project.data().children)) {
         if (type === "task") {  // TODO: combine if statements
             let task = await getTaskInformation(userID, itemID);
