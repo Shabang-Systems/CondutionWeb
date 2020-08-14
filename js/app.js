@@ -69009,8 +69009,8 @@ module.exports = perspectiveHandler;
     }
     do_INT(translations);
 
-    let ism = true;
-    //let ism = isMobile();
+    //let ism = true;
+    let ism = isMobile();
     let isi = isiOS();
 
     const preventDefault = e => e.preventDefault();// When rendering our container
@@ -69066,6 +69066,7 @@ else {
     $("body").removeClass();
     $("body").addClass(currentTheme);
 }
+
 // TODO: make this a mobile only change
 /*let loading_greeting_msgs = ["Welcome.", "Bontehu!", "Breath.", "Coffee or Tea?", "Productivity!", "Look up!", "Ready? Go!", "Accomplish!"];*/
 //let loading_greeting = loading_greeting_msgs[Math.floor(Math.random() * loading_greeting_msgs.length)];
@@ -71801,7 +71802,7 @@ $(document).on("click", "#perspective-documentaion", async function(e) {
     await Browser.open({ url: 'https://condutiondocs.shabang.cf/Perspective-Menus-408aae7988a345c0912644267ccda4d2' });
 });
 
-Hammer($("#content-area")[0]).on('swiperight swipeleft', function (e) {
+Hammer($("html")[0]).on('swiperight swipeleft', function (e) {
     e.preventDefault();
     const { x } = interfaceUtil.getStartSwipe(e);
     //swipe right to open nav /* note the condition here */
@@ -72588,6 +72589,20 @@ var chrono = require('chrono-node');
 				}
 
 				this.$timeObj = $tp.find('.ui_tpicker_time_input');
+                // IMPT: Don't remove this, this is a scrolling patch
+                this.$timeObj.click(function() {
+                    $(this).prop("readonly", false);
+                });
+                this.$timeObj.on("touchstart", function() {
+                    $(this).prop("readonly", false);
+                    $([document.documentElement, document.body]).animate({
+                    scrollTop: $(this).offset().top
+                    }, 1000);
+                });
+                this.$timeObj.blur(function() {
+                    $(this).prop("readonly", true);
+                });
+                this.$timeObj.prop("readonly", true);
 				this.$timeObj.change(function () {
 					var timeFormat = tp_inst.inst.settings.timeFormat;
 					var parsedTime = $.datepicker.parseTime(timeFormat, this.value, $.datepicker);
